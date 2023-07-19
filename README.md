@@ -1,13 +1,10 @@
 # 📚 Notes
-A simple notes web application built with NextJS
+A simple notes web application built with NextJS\
+Try out the demo [here](https://notes.francoishuyghe.com/).
 
 ## Getting Started
 
-First, run the development server:
-
-```bash
-npm run dev
-```
+Run the development server with `npm run dev`
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
@@ -19,7 +16,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - Query the notes content
 
 ## Trade-offs
-- For the sake of time, notes are loaded and edited in the app's context, using the `useContext` and `useReducer` hooks. Another option would have been to use `localstorage`.
+- For the sake of time, notes are loaded and edited in the app's context, using the `useContext` and `useReducer` hooks. Another option would have been to use `localstorage` for this proof of concept
 
 ## Future functionalities
 - add database access to save notes
