@@ -59,18 +59,21 @@ export default function NoteEditor({note, charMax, charMin, saveNote}: Props){
     return <form onSubmit={handleSubmit}>
         <textarea
             className="border block p-2 text-lg w-full min-h-[15rem]"
+            placeholder="Write a new note"
             value={noteContent}
             onChange={handleChange}
             onKeyDown={EnterPress}
             ref={textareaRef}
             autoFocus
          />
-         <div>{noteContent.length}/{charMax}</div>
          { validationError ? <div className="text-red-500">{validationError}</div> : null }
+         <div className="flex justify-between mt-2">
          <input
             type="submit" 
             className="bg-slate-600 text-white p-2 rounded"
             value="Save"
             />
+            <div className={noteContent.length == charMax ? 'text-red-500' : ''}>{noteContent.length}/{charMax}</div>
+            </div>
     </form>
 }

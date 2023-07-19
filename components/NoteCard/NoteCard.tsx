@@ -57,15 +57,15 @@ export default function NoteCard({ note, query }: Props){
     
     return <div className='mb-6'>
             {editing ? <NoteEditor note={note} charMin={20} charMax={300} saveNote={handleSave}/>
-                    : <article className='p-2 mb-2 border rounded bg-white shadow-sm'>{highlightedText}</article>
+                    : <article className='p-2 mb-1 border rounded bg-white shadow-sm'><p className='break-words'>{highlightedText}</p></article>
             }
-            <footer className='flex justify-end'>
+            <footer className='flex justify-end text-sm'>
             <button 
-                className='mr-6 text-slate-500 hover:text-red-950'
-                onClick={() => handleEdit()}>{ editing ? 'Cancel' : '🖊️ Edit'}</button>
+                className='mr-4 text-slate-500 hover:text-red-950'
+                onClick={() => handleEdit()}>{ editing ? 'Cancel' : 'Edit'}</button>
             <button 
-                className=' text-slate-500 hover:text-red-950'
-                onClick={() => handleDelete()}>❌ Delete</button>
+                className=' text-red-500 hover:text-red-950'
+                onClick={() => handleDelete()}>Delete</button>
             </footer>
          </div>
 }

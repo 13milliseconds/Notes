@@ -29,9 +29,11 @@ export default function Home() {
     }
 
   return (
-    <main className="min-h-screen p-24 max-w-6xl mx-auto">
-      <h1 className='text-4xl font-bold mb-6'>📚 My Notes</h1>
+    <main className="min-h-screen px-2 md:px-6 lg:px-24 max-w-6xl mx-auto">
+      <header className='lg:flex justify-between mb-6 align-middle sticky top-0 bg-white py-2'>
+      <h1 className='text-4xl font-bold mb-4 lg:mb-0'>📚 My Notes</h1>
       <SearchBar query={query} setQuery={setQuery} />
+      </header>
       <div className='mb-6'>
       { filteredNotes && filteredNotes.length
           ? filteredNotes.map((note) => <NoteCard key={note._id} note={note} query={query} />) 
