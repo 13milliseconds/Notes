@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, useContext } from "react"
-import { dataDispatchContext } from "@/lib/context"
+import { sanitize } from "@/lib/utils"
 import type { Note } from "@/lib/interfaces"
 
 interface Props{
@@ -41,7 +41,7 @@ export default function NoteEditor({note, charMax, charMin, saveNote}: Props){
         
     const handleSave = () => {
         if( validateContent(noteContent) ){
-            saveNote({...note, content: noteContent})
+            saveNote({...note, content: sanitize(noteContent)})
             setNoteContent("")
             if( textareaRef.current ) textareaRef.current.focus()
         }
@@ -71,7 +71,6 @@ export default function NoteEditor({note, charMax, charMin, saveNote}: Props){
             type="submit" 
             className="bg-slate-600 text-white p-2 rounded disabled:bg-slate-200 transition cursor-pointer hover:bg-green-950"
             value="Save"
-            // disabled={noteContent.length < charMin}
             />
             <div className="text-red-500 flex-1 p-2 italic">{ validationError ? validationError : '' }</div>
             <div className={noteContent.length == charMax ? 'text-red-500' : ''}>{noteContent.length}/{charMax}</div>
