@@ -17,8 +17,6 @@ export default function SearchBar({ query, setQuery}: Props){
             className="text-slate-500 rounded disabled:opacity-0 transition absolute right-4 top-[.7rem]"
             disabled={!query}
             onClick={() => setQuery("")}
-            >
-                Clear
-            </button>
+        >Clear</button>
     </div>
 }

@@ -18,7 +18,7 @@ export default function NoteEditor({note, charMax, charMin, saveNote}: Props){
     useEffect(() => {
         setNoteContent(note.content)
         if( textareaRef.current ) textareaRef.current.focus()
-    }, [])
+    }, [note.content])
 
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
         if( e.target.value.length <= 300) setNoteContent(e.target.value)
