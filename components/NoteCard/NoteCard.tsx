@@ -3,15 +3,33 @@ import { Note } from "@/lib/interfaces";
 import { dbActions } from "@/lib/reducer"
 import { dataDispatchContext } from "@/lib/context"
 import NoteEditor from '../NoteEditor/NoteEditor';
+import { arrayBuffer } from 'stream/consumers';
 
 interface Props{
-    note: Note
+    note: Note,
+    query: string
 }
 
-export default function NoteCard({ note }: Props){
+// Highlighting function ************************
+// Find all instances of the query in the content string
+// Then split it using Positive Lookahead "()" to keep the instances in the resulting array
+// Then simply replace matching strings with a JSX element for styling
+const wrapTags = (text: string, query: string) => {
+    const matcher = new RegExp(`(${query})`, 'gi')
+    const textArray = text.split(matcher);
+    return textArray.map(str => {
+        if ( matcher.test(str)) {
+        return <span className="bg-yellow-300">{str}</span>;
+        }
+        return str;
+    })
+}
+
+export default function NoteCard({ note, query }: Props){
     const [editing, setEditing] = useState(false)
     const dispatch = useContext(dataDispatchContext)
 
+    const highlightedText = query ? wrapTags(note.content, query) : note.content
 
     const handleDelete = () => {
         console.log('Deleting ', note._id)
@@ -39,7 +57,7 @@ export default function NoteCard({ note }: Props){
     
     return <div className='mb-6'>
             {editing ? <NoteEditor note={note} charMin={20} charMax={300} saveNote={handleSave}/>
-                    : <article className='p-2 mb-2 border rounded bg-white shadow-sm'>{note.content}</article>
+                    : <article className='p-2 mb-2 border rounded bg-white shadow-sm'>{highlightedText}</article>
             }
             <footer className='flex justify-end'>
             <button 
