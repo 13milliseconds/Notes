@@ -34,7 +34,7 @@ export default function NoteEditor({note, charMax, charMin, saveNote}: Props){
     }
     
     const EnterPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-        if (e.keyCode == 13 && e.shiftKey == false) {
+        if ((e.keyCode == 13 || e.code == 'Enter') && e.shiftKey == false) {
             e.preventDefault()
             handleSave()
         }}
@@ -58,7 +58,7 @@ export default function NoteEditor({note, charMax, charMin, saveNote}: Props){
 
     return <form onSubmit={handleSubmit}>
         <textarea
-            className="border block p-2 text-lg w-full min-h-[15rem]"
+            className="border block p-2 text-lg w-full min-h-[10rem]"
             placeholder="Write a new note"
             value={noteContent}
             onChange={handleChange}
@@ -66,13 +66,14 @@ export default function NoteEditor({note, charMax, charMin, saveNote}: Props){
             ref={textareaRef}
             autoFocus
          />
-         { validationError ? <div className="text-red-500">{validationError}</div> : null }
-         <div className="flex justify-between mt-2">
+         <div className="flex mt-2">
          <input
             type="submit" 
-            className="bg-slate-600 text-white p-2 rounded"
+            className="bg-slate-600 text-white p-2 rounded disabled:bg-slate-200 transition cursor-pointer hover:bg-green-950"
             value="Save"
+            // disabled={noteContent.length < charMin}
             />
+            <div className="text-red-500 flex-1 p-2 italic">{ validationError ? validationError : '' }</div>
             <div className={noteContent.length == charMax ? 'text-red-500' : ''}>{noteContent.length}/{charMax}</div>
             </div>
     </form>

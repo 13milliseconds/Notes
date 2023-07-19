@@ -1,9 +1,10 @@
+import React from 'react';
 import { useContext, useState } from 'react'
 import { Note } from "@/lib/interfaces";
 import { dbActions } from "@/lib/reducer"
 import { dataDispatchContext } from "@/lib/context"
 import NoteEditor from '../NoteEditor/NoteEditor';
-import { arrayBuffer } from 'stream/consumers';
+
 
 interface Props{
     note: Note,
@@ -14,14 +15,15 @@ interface Props{
 // Find all instances of the query in the content string
 // Then split it using Positive Lookahead "()" to keep the instances in the resulting array
 // Then simply replace matching strings with a JSX element for styling
+// Using indexes as keys because the text won't change
 const wrapTags = (text: string, query: string) => {
     const matcher = new RegExp(`(${query})`, 'gi')
     const textArray = text.split(matcher);
-    return textArray.map(str => {
+    return textArray.map((str, idx) => {
         if ( matcher.test(str)) {
-        return <span className="bg-yellow-300">{str}</span>;
+        return <span key={idx} className="bg-yellow-300">{str}</span>;
         }
-        return str;
+        return <React.Fragment key={idx}>{str}</React.Fragment>;
     })
 }
 
@@ -57,7 +59,7 @@ export default function NoteCard({ note, query }: Props){
     
     return <div className='mb-6'>
             {editing ? <NoteEditor note={note} charMin={20} charMax={300} saveNote={handleSave}/>
-                    : <article className='p-2 mb-1 border rounded bg-white shadow-sm'><p className='break-words'>{highlightedText}</p></article>
+                    : <article className='p-2 mb-1 border rounded bg-white shadow-sm'><p className='break-words whitespace-pre-line'>{highlightedText}</p></article>
             }
             <footer className='flex justify-end text-sm'>
             <button 

@@ -5,16 +5,16 @@ interface Props{
 }
 
 export default function SearchBar({ query, setQuery}: Props){
-    return <div className="flex w-full md:max-w-sm">
+    return <div className="flex md:max-w-xs relative">
         <input 
         type='text' 
         placeholder="Search"
-        className="border block p-2 text-lg flex-1"
+        className="border rounded block p-2 pr-12 text-lg flex-1 text-black"
         onChange={(e) => setQuery(e.target.value)} 
         value={query} 
         />
         <button
-            className="py-2 px-4 bg-slate-600 text-white ml-2 rounded disabled:bg-slate-200 transition"
+            className="text-slate-500 rounded disabled:opacity-0 transition absolute right-4 top-[.7rem]"
             disabled={!query}
             onClick={() => setQuery("")}
             >
