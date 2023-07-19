@@ -10,8 +10,18 @@ interface Props{
     children: React.ReactNode
 }
 
+// Temporary convert JSON strings into dates
+let sampleNotes = notesJSON.map((note) => {
+  let newDate = new Date(note.createdAt)
+  return {
+    ...note,
+    createdAt: newDate,
+    updatedAt: newDate
+  }
+})
+
 export function DataProvider ({ children }: Props) {
-    const [database, dispatch] = useReducer(dataReducer, notesJSON);
+    const [database, dispatch] = useReducer(dataReducer, sampleNotes);
   
     return (
       <dataContext.Provider value={database}>

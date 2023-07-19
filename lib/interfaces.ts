@@ -2,7 +2,7 @@
 interface Note{
     _id?: string
     createdAt?: Date
-    editedAt?: Date
+    updatedAt?: Date
     content: string
 }
 

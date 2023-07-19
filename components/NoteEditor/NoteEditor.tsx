@@ -41,7 +41,13 @@ export default function NoteEditor({note, charMax, charMin, saveNote}: Props){
         
     const handleSave = () => {
         if( validateContent(noteContent) ){
-            saveNote({...note, content: sanitize(noteContent)})
+            let now = new Date()
+            saveNote({
+                ...note,
+                createdAt: note.createdAt ? note.createdAt : now,
+                updatedAt: now,
+                content: sanitize(noteContent)
+            })
             setNoteContent("")
             if( textareaRef.current ) textareaRef.current.focus()
         }

@@ -4,6 +4,7 @@ import { Note } from "@/lib/interfaces";
 import { dbActions } from "@/lib/reducer"
 import { dataDispatchContext } from "@/lib/context"
 import NoteEditor from '../NoteEditor/NoteEditor';
+import { dateDisplay } from '@/lib/utils';
 
 
 interface Props{
@@ -34,7 +35,6 @@ export default function NoteCard({ note, query }: Props){
     const highlightedText = query ? wrapTags(note.content, query) : note.content
 
     const handleDelete = () => {
-        console.log('Deleting ', note._id)
         dispatch && dispatch({
             type: dbActions.DELETE_DOCUMENT,
             payload: {
@@ -58,6 +58,7 @@ export default function NoteCard({ note, query }: Props){
         }
     
     return <div className='mb-6'>
+            <div className='text-sm text-slate-400'>{note.createdAt? dateDisplay(note.createdAt): ''} {note.createdAt !== note.updatedAt ? '(edited)' : ''}</div>
             {editing ? <NoteEditor note={note} charMin={20} charMax={300} saveNote={handleSave}/>
                     : <article className='p-2 mb-1 border rounded bg-white shadow-sm'><p className='break-words whitespace-pre-line'>{highlightedText}</p></article>
             }
