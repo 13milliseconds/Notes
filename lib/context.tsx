@@ -1,3 +1,6 @@
+// **************
+// Create a database and a dispatch context, then wrap the application with their provider
+
 import React, { createContext, useReducer } from "react"
 import { Note } from "./interfaces"
 import notesJSON from '@/lib/sampleNotes.json'
@@ -10,7 +13,7 @@ interface Props{
     children: React.ReactNode
 }
 
-// Temporary convert JSON strings into dates
+// Convert JSON strings into dates for samples
 let sampleNotes = notesJSON.map((note) => {
   let newDate = new Date(note.createdAt)
   return {

@@ -1,3 +1,5 @@
+// **************
+// Controlled input form that takes a state and setState variable
 
 interface Props{
     query: string

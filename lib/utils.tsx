@@ -1,4 +1,6 @@
- export const sanitize = (str: string) => {
+// Sanitize function
+// Remove possible html element insertion
+export const sanitize = (str: string) => {
     const map:{[key: string] : string} = {
         '&': '&',
         '<': '<',
@@ -14,8 +16,10 @@
     })
 }
 
+// Date Format function
+// Returns a date like Jul 19, 2023, 9:42 AM
 export const dateDisplay = (date: Date): string => {
-    let sanitizedDate = new Date(date)
+    let sanitizedDate = new Date(date)      // failsafe in case it receives a string instead of a date object
     let formatter = Intl.DateTimeFormat(
         "default",
         {

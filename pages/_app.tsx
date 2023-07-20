@@ -6,7 +6,7 @@ import { DataProvider } from '@/lib/context'
 export default function App({ Component, pageProps }: AppProps) {
   return <>
   <DataProvider>
-  <Component {...pageProps} />
+    <Component {...pageProps} />
   </DataProvider>
   </>
 }
