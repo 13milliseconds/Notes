@@ -9,7 +9,7 @@ export default function SearchBar({ query, setQuery}: Props){
         <input 
         type='text' 
         placeholder="Search"
-        className="border rounded block p-2 pr-12 text-lg flex-1 text-black"
+        className="border rounded block p-2 pr-12 text-lg flex-1 text-black dark:text-white dark:bg-slate-800"
         onChange={(e) => setQuery(e.target.value)} 
         value={query} 
         />

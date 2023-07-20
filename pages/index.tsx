@@ -42,7 +42,7 @@ export default function Home() {
         <div className='mb-6'>
         { filteredNotes && filteredNotes.length
             ? filteredNotes.map((note) => <NoteCard key={note._id} note={note} query={query} />) 
-            : <div className='bg-slate-100 rounder p-6'>{ query ? `No note matching the query '${query}'` : 'Write your first note using the form below!'}</div>
+            : <div className='bg-slate-100 dark:bg-slate-600 rounder p-6'>{ query ? `No note matching the query '${query}'` : 'Write your first note using the form below!'}</div>
         }
         </div>
         </section>

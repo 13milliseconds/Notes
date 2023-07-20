@@ -22,7 +22,7 @@ const wrapTags = (text: string, query: string) => {
     const textArray = text.split(matcher);
     return textArray.map((str, idx) => {
         if ( matcher.test(str)) {
-        return <span key={idx} className="bg-yellow-300">{str}</span>;
+        return <span key={idx} className="bg-yellow-300 dark:bg-yellow-600">{str}</span>;
         }
         return <React.Fragment key={idx}>{str}</React.Fragment>;
     })
@@ -57,10 +57,10 @@ export default function NoteCard({ note, query }: Props){
         setEditing(false)
         }
     
-    return <div className='mb-6'>
+    return <div className='mb-'>
             <div className='text-sm text-slate-400'>{note.createdAt? dateDisplay(note.createdAt): ''} {note.createdAt !== note.updatedAt ? '(edited)' : ''}</div>
             {editing ? <NoteEditor note={note} charMin={20} charMax={300} saveNote={handleSave}/>
-                    : <article className='p-2 mb-1 border rounded bg-white shadow-sm'><p className='break-words whitespace-pre-line'>{highlightedText}</p></article>
+                    : <article className='p-2 mb-1 border dark: border-slate-600 rounded bg-white dark:bg-slate-800 shadow-sm'><p className='break-words whitespace-pre-line'>{highlightedText}</p></article>
             }
             <footer className='flex justify-end text-sm'>
             <button 

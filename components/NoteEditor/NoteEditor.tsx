@@ -64,7 +64,7 @@ export default function NoteEditor({note, charMax, charMin, saveNote}: Props){
 
     return <form onSubmit={handleSubmit}>
         <textarea
-            className="border block p-2 text-lg w-full min-h-[10rem]"
+            className="border block p-2 text-lg w-full min-h-[10rem] dark:bg-slate-800 dark:border-slate-600 rounded"
             placeholder="Write a new note"
             value={noteContent}
             onChange={handleChange}
